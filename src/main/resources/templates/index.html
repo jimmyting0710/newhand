@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- 加入thymeleaf-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<script
+	src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+    
+<head>
+	<meta charset="UTF-8">
+	<title>form</title>
+</head>
+
+<body>
+	<h2>新增</h2>
+		
+		<!-- <input type="text" id="ename" name="ename" />
+		<input type="text" id="phone" name="phone" />
+		<input type="button" id="adduser" />
+	
+		<form name="form1" action="/test/add" method="get">
+			<input type="submit" /> 
+		</form> -->
+		<form name="form1" action="" method="get">
+			<input type="text" id="ename" name="ename" />
+			<input type="text" id="phone" name="phone" />
+	    </form>
+		<input type="button" id="btn1" value="新增">
+	
+	<h2>查詢</h2>
+		<form name="form2" th:action="@{/find}" method="get">
+			<input type="text" id="ename" name="ename" required="required" placeholder="請填入ALL或姓名"/>
+			<input type="submit" value="查詢"/>
+		</form>
+	
+	
+	
+	<script>
+		
+		$("#btn1").on("click",function(){
+			let ename =$("#ename").val();
+			let phone=$("#phone").val();
+			let addjosn={
+				"ename":ename,
+				"phone":phone
+			}
+			$.ajax({
+				type: "POST", //傳送方式
+				url: "add", //傳送目的地
+				// contentType: "application/json;charse=UTF-8",
+				dataType: "json", //資料格式
+				data: { //傳送資料
+					'ss': JSON.stringify(addjosn),
+					// addjosn
+				},
+				success: function (data) {
+					alert("已更新");
+					// console.log(data);
+					location.reload(true);
+				},
+				error: function (data) {
+					alert("錯誤");
+					// console.log(data);
+				}
+
+			});
+		})
+
+
+
+
+		// let ename =$("#ename").val();
+		// let phone=$("#phone").val();
+		// let addjosn={
+		// 	"ename":ename,
+		// 	"phone":phone
+		// }
+
+		// $("#adduser").on("click",function(){
+		// 	$.ajax({
+		// 		type: "post",                  // GET | POST | PUT | DELETE | PATCH
+		// 		url: '/add',           // 資料請求的網址
+     	// 		data: addjson,               // 傳送資料到指定的 url
+     	// 		dataType: "json",             // 預期會接收到回傳資料的格式： json | xml | html
+        //         success: function(){    // request 成功取得回應後執行
+		// 			alert("OK");
+		// 		}
+					
+		// 	})
+		// })
+	</script>
+</body>
+
+</html>

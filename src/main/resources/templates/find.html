@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<script
+	src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table  border="2">
+        <tr>
+            <td colspan="2" >name</td>
+            <td colspan="2" >phone</td>
+        </tr>
+        <tr th:each="name:${findename}">
+            <td colspan="2" th:value="${name.ename}" th:text="${name.ename}"></td>
+            <td colspan="2" th:value="${name.phone}" th:text="${name.phone}"></td>
+        </tr>
+    </table>
+    <h2>刪除</h2>
+		<form name="form2" th:action="@{/delete}" method="get">
+			<input type="text" id="ename" name="ename" placeholder="請填入姓名"/>
+            <input type="submit"  value="刪除">
+		</form>
+	
+	<h2>修改</h2>
+		<form name="form4" th:action="@{/update}" method="get">
+			<input type="text" id="ename" name="ename" placeholder="請填入姓名"/>
+            <input type="text" id="phone" name="phone" placeholder="請填入要更改的電話"/>
+            <input type="submit"  value="修改">
+		</form>
+
+</body>
+</html>
